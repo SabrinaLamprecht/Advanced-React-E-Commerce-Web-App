@@ -22,8 +22,8 @@ This project features:
 ----- Installation Steps -----
 
 1. Clone the repository
-   git clone https://github.com/SabrinaLamprecht/Firebase-Ecommerce-App.git
-   cd Firebase-Ecommerce-App
+   git clone https://github.com/SabrinaLamprecht/Advanced-React-E-Commerce-Web-App.git
+   cd Advanced-React-E-Commerce-Web-App
 2. Install dependencies
    npm install
 3. Run the application: npm run dev
