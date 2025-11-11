@@ -1,43 +1,45 @@
 // src/components/NavBar.tsx
 
-// Imports
 import React from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
-import { useNavigate } from "react-router";
+import "../styles/NavBar.css";
 
-// Define the NavBar component as a React Functional Component
 const NavBar: React.FC = () => {
-  // Initialize navigate function to allow navigation between routes
   const navigate = useNavigate();
-
-  // Access the Redux store to calculate the total number of items in the cart
-  // This takes all items in the cart and sums their "count" values
+  const { user } = useAuth();
   const totalCount = useSelector((state: RootState) =>
     state.cart.items.reduce((acc, item) => acc + item.count, 0)
   );
 
-  // Render the navigation bar UI
   return (
-    // Styling
     <Navbar bg="dark" variant="dark" fixed="top" className="py-3">
-      <Container className="d-flex align-items-center">
-        {/* Brand Name */}
-        <Navbar.Brand href="/">E-Commerce App</Navbar.Brand>
-        <Nav className="ms-auto d-flex align-items-center gap-4">
-          {/* Home link */}
-          <Nav.Link href="/" className="text-white text-decoration-none">
-            Home
-          </Nav.Link>
+      <Container className="d-flex align-items-center justify-content-between">
+        {/* Left side: Brand + Admin Panel */}
+        <Nav className="d-flex align-items-center gap-4">
+          <Navbar.Brand href="/">E-Commerce App </Navbar.Brand>
+          {user && (
+            <Link to="/admin" className="link-lightning">
+              Admin Panel ⚙️
+            </Link>
+          )}
+        </Nav>
 
-          {/* Cart link with cart icon and item count badge */}
-          <Nav.Link
+        {/* Right side: Other links */}
+        <Nav className="d-flex align-items-center gap-4">
+          <Link to="/" className="link-lightning">
+            Home
+          </Link>
+
+          <span
             onClick={() => navigate("/cart")}
-            className="text-white position-relative"
+            className="link-lightning position-relative"
+            style={{ cursor: "pointer" }}
           >
             🛒 Cart
-            {/* If there are items in the cart, show a badge with the count */}
             {totalCount > 0 && (
               <Badge
                 bg="primary"
@@ -47,12 +49,31 @@ const NavBar: React.FC = () => {
                 {totalCount}
               </Badge>
             )}
-          </Nav.Link>
+          </span>
+
+          {user ? (
+            <>
+              <Link to="/profile" className="link-lightning">
+                Profile
+              </Link>
+              <Link to="/logout" className="link-lightning">
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/register" className="link-lightning">
+                Register
+              </Link>
+              <Link to="/login" className="link-lightning">
+                Login
+              </Link>
+            </>
+          )}
         </Nav>
       </Container>
     </Navbar>
   );
 };
 
-// Export the NavBar component so it can be used in other parts of the app
 export default NavBar;

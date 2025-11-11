@@ -1,0 +1,16 @@
+/* src/styles/NavBar.css */
+
+.link-lightning {
+  color: #fdd835;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.link-lightning:hover {
+  background-color: #fdd835;
+  color: #000000;
+  text-decoration: none;
+}

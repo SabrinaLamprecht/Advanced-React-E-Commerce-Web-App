@@ -1,24 +1,33 @@
 // src/types/types.ts
 
-// Define the structure of a single product
-export interface Product {
-  id: number;
+export type Product = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  image?: string;
+  category?: string;
+};
+
+export type OrderItem = {
+  id: string;
   title: string;
   price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+  image?: string;
+  count: number;
+};
+
+export type Order = {
+  id?: string;
+  userId: string;
+  items: OrderItem[];
+  totalPrice: number;
+  createdAt?: any;
+  status?: string;
+};
 
 // Type alias for category (simple string)
 export type Category = string;
-
-// Context-related types (used in ProductContext)
-// --------------------------------------------------
 
 // Define the allowed actions for the ProductContext reducer
 // Each action type describes what change should occur in the product state

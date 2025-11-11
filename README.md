@@ -1,42 +1,29 @@
-Advanced React E-Commerce Web App
+E-Commerce Web App (with Firebase)
 
 ----- Project Overview -----
-This project is an advanced e-commerce application built with React, showcasing modern front-end development practices such as React Query, Redux Toolkit, Context API, and session storage for state persistence. The app fetches product data from the FakeStoreAPI (https://fakestoreapi.com) and provides users with a fully interactive product catalog, category filtering, and a shopping cart with dynamic state management.
+This project is an advanced e-commerce application built with React, TypeScript, and Firebase. It includes secure user authentication, Firestore CRUD operations, and order management.
 
 ----- Project Features -----
 This project features:
 
-- A product catalog: Retrieves products from the FakeStoreAPI using React Query and displays each product with:
+- User Management: Users can register and login with Firebase Authentication; Users can create, read, update, and delete their user profile; Users can logout
 
-* Title
-* Price
-* Category
-* Description
-* Rating (rate and count)
-* Image (with fallback for broken URLs via https://via.placeholder.com)
-* Each product also includes an “Add to Cart” button
+- Product Management: Store products and/or animal information in Firebase Firestore; Create, read, update, and delete products listings; Fetch product listings dynamically
 
-- Category navigation: Dynamically fetches all product categories from the API; Users can select a category from a dropdown to filter displayed products; Selecting a category triggers a filtered product display using React Query; Includes a Clear Filter button to reset the category selection
-- Shopping cart which has state management with Redux Toolkit: Manages cart state globally using Redux; Updates are persisted in sessionStorage, ensuring cart contents remain between page reloads; Actions include:
+- Order Management: Store user order history in Firestore; Users can view past orders with order details
 
-* addToCart
-* removeFromCart
-* updateCount
-* clearCart
+---- Tech Used ----
 
-- Shopping cart component: Displays all products currently in the cart; Provides controls to remove individual items and adjust quantities; Dynamically calculates and displays the total number of products in the cart and the total price of all items; Checkout simulation clears the cart state and session storage, with visual feedback to confirm completion
-
-- Data fetching and performance:
-
-* React Query: Efficiently fetches and caches product and category data; Handles loading and error states gracefully
-* Fallback Handling: Displays a placeholder image for any product images that fail to load
-* Context API: ProductContext is used to manage global product state, including the currently selected category
+- Frontend: React, TypeScript, React Router, React Query
+- Backend: Firebase Authentication, Firestore
+- Styling: CSS Modules, Custom Style Objects
+- Build Tool: Vite
 
 ----- Installation Steps -----
 
 1. Clone the repository
-   git clone https://github.com/SabrinaLamprecht/Advanced-React-E-Commerce-Web-App.git
-   cd Advanced-React-E-Commerce-Web-App
+   git clone https://github.com/SabrinaLamprecht/Firebase-Ecommerce-App.git
+   cd Firebase-Ecommerce-App
 2. Install dependencies
    npm install
 3. Run the application: npm run dev
@@ -44,35 +31,79 @@ This project features:
 
 ----- Usage -----
 
-1. Home Page
+1. Register Page
 
-   - Displays all products fetched from FakeStoreAPI
-   - Category dropdown filters products dynamically
-   - Add products to cart using the "Add to Cart" button
+   - New users can register with their full name, email, and password using Firebase Authentication
+   - Upon registration, a corresponding user document in the users collection in Firestore is created
 
-2. Shopping Cart
+2. Login / Logout
+
+   - Login: Users are authenticated with Firebase Authentication using their email/password
+   - Logout: Logout button for users to sign out with
+
+3. Home Page
+
+   - Displays all products fetched from Firestore
+   - Category dropdown filters product listings dynamically
+   - Add products and/or animals to cart using the "Add to Cart" button
+
+4. Shopping Cart
+
    - Accessible from the navbar cart icon
    - Adjust product quantities or remove products
    - View total price and item count
    - Checkout clears cart and provides confirmation
 
+5. Profile
+
+   - Displays the following infomation: Display Name & Email
+   - Contains Edit Profile button to edit Display Name
+   - Contains Delete Account button to delete entire account
+   - Contains View Order History button to navigate to the user's Order History information
+
+6. Order History Page
+
+   - Allow users to access a list of their previous carts, serving as a history of their orders
+   - Displays each cart entry with: cart ID, date of creation, total price of the order
+   - Enables users to click on individual orders to view the full details, including: the list of items (with title, image, and count), the total price of the order
+
+7. Admin Panel
+
+   - Displays all the listings that were created via a products collection in Firestore to store product data
+   - Allows a signed in user to create, update, and delete listings that will be shown on the Home page
+
 ----- Folder Structure -----
 
 src/
 ├── api/
-│ └── api.ts # API functions for fetching products and categories
+│ └── api.ts
 ├── components/
-│ ├── NavBar.tsx # Navigation bar with cart badge
-│ ├── ProductCard.tsx # Individual product cards
+│ ├── NavBar.tsx
+│ ├── ProductCard.tsx
+│ ├── ProductForm.tsx
 ├── context/
-│ └── ProductContext.tsx # Context API for product state
+│ ├── AuthContext.tsx
+│ ├── ProductContext.tsx
+├── lib/
+│ └── firebase.ts
 ├── pages/
-│ └── Home.tsx # Home page with product catalog
-│ └── ShoppingCart.tsx # Shopping cart page
+│ └── AdminProductManager.tsx
+│ └── Home.tsx
+│ └── Login.tsx
+│ └── Logout.tsx
+│ └── OrderDetails.tsx
+│ └── OrderHistory.tsx
+│ └── Profile.tsx
+│ └── Register.tsx
+│ └── ShoppingCart.tsx
 ├── redux/
-│ ├── cartSlice.ts # Redux Toolkit slice for cart
-│ └── store.ts # Redux store configuration
+│ ├── cartSlice.ts
+│ └── store.ts
+├── styles/
+│ ├── auth-styles.ts
+│ └── cardStyles.ts
+│ └── NavBar.css
 ├── types/
-│ └── types.ts # TypeScript type definitions
-├── App.tsx # Main app component with routing and providers
-└── main.tsx # Entry point
+│ └── types.ts
+├── App.tsx
+└── main.tsx

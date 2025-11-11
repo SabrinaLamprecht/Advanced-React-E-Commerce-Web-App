@@ -1,4 +1,4 @@
-# Logs
+# --- Test coverage / temporary outputs / Logs ---
 logs
 *.log
 npm-debug.log*
@@ -6,28 +6,67 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+coverage/
+jest-html-reporters-*.html
+*.lcov
+*.tmp
 
-# Node modules
+# --- Node dependencies ---
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-store/
 
-# Build / production folders
+# --- TypeScript cache ---
+*.tsbuildinfo
+
+# --- Build output ---
 dist/
-dist-ssr/
 build/
+.cache/
+coverage/
+out/
+.tmp/
+
+# --- Environment files (sensitive keys) ---
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+*.env.development
+*.env.production
+*.env.local
+*.env.test
 
 # TypeScript
 *.tsbuildinfo
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+# --- Editor / IDE settings ---
+.vscode/
 .idea/
+*.swp
+*.swo
 
-# OS files
+# --- System files ---
 .DS_Store
 Thumbs.db
+ehthumbs.db
+desktop.ini
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# --- Firebase / Credentials ---
+firebase-debug.log
+.firebaserc
+.firebase/
+*.firebase/
+**/.firebaserc
+

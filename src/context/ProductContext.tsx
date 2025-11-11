@@ -1,6 +1,5 @@
 // src/context/ProductContext.tsx
 
-// Imports
 import { createContext, useContext, type ReactNode, useReducer } from "react";
 import {
   type ProductState,
