@@ -1,6 +1,6 @@
 //src/pages/Register.tsx
 
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import styles from "../styles/auth-styles";
@@ -9,15 +9,22 @@ import { useNavigate } from "react-router-dom";
 // Typed style objects
 const cardStyleTyped: CSSProperties = {
   ...styles.card,
+  display: "flex" as const,
+  flexDirection: "column" as const,
   marginTop: "5rem",
+  textAlign: "center" as const,
 };
 
 const fieldsetStyleTyped: CSSProperties = {
   ...styles.fieldset,
+  display: "flex" as const,
+  flexDirection: "column" as const,
 };
 
 const legendStyleTyped: CSSProperties = {
   ...styles.legend,
+  display: "flex" as const,
+  flexDirection: "column" as const,
 };
 
 // States for the form inputs
@@ -58,7 +65,7 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           {error && <p style={styles.error}>{error}</p>}
           <fieldset style={fieldsetStyleTyped}>
-            <legend style={styles.legend}>Create Account</legend>
+            <legend style={legendStyleTyped}>Create Account</legend>
 
             <label style={styles.label}>
               Full Name

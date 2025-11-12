@@ -1,6 +1,6 @@
 //src/pages/ShoppingCart.tsx
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../redux/store";
 import { removeItem, setItemCount, clearCart } from "../redux/cartSlice";
@@ -82,15 +82,26 @@ const ShoppingCart: React.FC = () => {
 };
 
 // Typed style objects
-const cartItemContainerStyle: React.CSSProperties = {
+const cartItemContainerStyle: CSSProperties = {
   ...cardStyle,
-  display: "flex",
-  flexDirection: "column",
+  display: "flex" as const,
+  flexDirection: "column" as const,
   flexGrow: 1,
+  height: "100%",
+  minHeight: "100%",
+  borderRadius: "10px",
+  backgroundColor: "#fff",
+  boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "10px",
+  overflow: "hidden",
+  boxSizing: "border-box" as const,
+  width: "100%",
 };
 
-const imgContainerStyle: React.CSSProperties = {
-  display: "flex",
+const imgContainerStyle: CSSProperties = {
+  display: "flex" as const,
   justifyContent: "center",
   alignItems: "center",
   height: "200px",

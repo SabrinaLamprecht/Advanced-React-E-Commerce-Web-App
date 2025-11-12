@@ -1,9 +1,10 @@
 // src/styles/auth-styles.ts
+import type { Properties } from "csstype";
 
-const styles = {
+const styles: { [key: string]: Properties<string | number> } = {
   form: {
-    display: "flex",
-    flexDirection: "column",
+    display: "flex" as const,
+    flexDirection: "column" as const,
     alignItems: "center",
     justifyContent: "center",
     minHeight: "100vh",
@@ -16,25 +17,29 @@ const styles = {
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
     width: "100%",
     maxWidth: "400px",
+    display: "flex" as const,
+    flexDirection: "column" as const,
   },
   heading: {
-    textAlign: "center",
+    textAlign: "center" as const,
     marginBottom: "1.5rem",
   },
   fieldset: {
     border: "none",
-    display: "flex",
-    flexDirection: "column",
+    display: "flex" as const,
+    flexDirection: "column" as const,
     gap: "1rem",
   },
   legend: {
     fontWeight: "600",
     fontSize: "1.2rem",
     marginBottom: "0.5rem",
+    display: "flex" as const,
+    flexDirection: "column" as const,
   },
   label: {
-    display: "flex",
-    flexDirection: "column",
+    display: "flex" as const,
+    flexDirection: "column" as const,
     fontSize: "0.9rem",
   },
   input: {
@@ -60,7 +65,7 @@ const styles = {
   },
   error: {
     color: "red",
-    textAlign: "center",
+    textAlign: "center" as const,
     marginBottom: "1rem",
   },
 };
