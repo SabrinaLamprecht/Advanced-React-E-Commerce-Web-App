@@ -1,4 +1,5 @@
 //src/styles/cardStyles.ts
+import type { Properties } from "csstype";
 
 export const cardStyle = {
   height: "100%",
@@ -16,7 +17,7 @@ export const cardStyle = {
   width: "100%",
 };
 
-export const imgStyle = {
+export const imgStyle: Properties<string> = {
   objectFit: "contain",
   maxHeight: "200px",
   maxWidth: "100%",

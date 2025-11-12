@@ -132,7 +132,7 @@ const CartItem: React.FC<{ item: any; dispatch: any }> = ({
             type="number"
             min={1}
             value={item.count || 1}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               dispatch(
                 setItemCount({
                   id: item.id,
