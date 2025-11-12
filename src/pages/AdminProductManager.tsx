@@ -36,7 +36,15 @@ const AdminProductManager: React.FC = () => {
       if (id) {
         await updateProductInFirestore(id, productData);
       } else {
-        await createProductInFirestore(productData);
+        const newProduct: Omit<Product, "id"> = {
+          title: productData.title!,
+          description: productData.description!,
+          price: productData.price!,
+          image: productData.image,
+          category: productData.category,
+        };
+
+        await createProductInFirestore(newProduct);
       }
       queryClient.invalidateQueries({ queryKey: ["products"] });
       setShowModal(false);

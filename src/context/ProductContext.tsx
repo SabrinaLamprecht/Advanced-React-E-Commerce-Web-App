@@ -39,7 +39,10 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   // useReducer initializes state and gives a dispatch function to trigger updates
-  const [state, dispatch] = useReducer(productReducer, initialProductState);
+  const [state, dispatch] = useReducer(
+    productReducer as React.Reducer<ProductState, ProductAction>,
+    initialProductState
+  );
 
   // Pass the state and dispatch function down via context
   return (

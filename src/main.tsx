@@ -3,7 +3,7 @@
 // Imports
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
+import App from "./App";
 import "@smastrom/react-rating/style.css";
 
 createRoot(document.getElementById("root")!).render(
