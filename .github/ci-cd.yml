@@ -1,0 +1,51 @@
+# This YAML code defines a GitHub Actions workflow called "Ecommerce App CI/CD"
+
+# The workflow is named "Ecommerce App CI/CD" and
+# will show up with this name in the "Actions" tab of your GitHub repository
+name: Ecommerce App CI/CD
+
+# Trigger conditions (on) - Run the workflow on pushes and pull requests
+on:
+  # push: The workflow is triggered whenever a commit is pushed to the main branch
+  push:
+    branches:
+      - main
+      # pull_request: The workflow is triggered whenever a pull request is created or updated against the main branch
+  pull_request:
+    branches:
+      - main
+
+# The jobs section defines what tasks this workflow will perform. Here, a single job named test
+# is defined and it specifies the environment where the job will run.
+# In this case, it uses the latest version of Ubuntu
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # The steps section defines the sequence of actions that will be executed within the test job
+    steps:
+      # Step 1: Checkout the repository code: Uses the actions/checkout GitHub Action to fetch
+      # the repository's code. This makes the repository’s files available for the pipeline to work with
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js: Configures the Node.js environment for the workflow & installs
+      # and uses Node.js version 18, which is compatible with many React application
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" # Use a Node.js version compatible with your React app
+
+      # Step 3: Install dependencies: Installs the project dependencies specified in the
+      # package.json file using npm install
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests: Executes the project's test suite using the npm test command; the
+      # --watchAll=false flag ensures the tests run once and exit (useful in a CI environment)
+      - name: Run tests
+        run: npm test
+
+      # Step 5: Build React app
+      - name: Build React app
+        run: npm run build
