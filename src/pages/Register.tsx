@@ -6,6 +6,20 @@ import { auth } from "../lib/firebase";
 import styles from "../styles/auth-styles";
 import { useNavigate } from "react-router-dom";
 
+// Typed style objects
+const cardStyleTyped: CSSProperties = {
+  ...styles.card,
+  marginTop: "5rem",
+};
+
+const fieldsetStyleTyped: CSSProperties = {
+  ...styles.fieldset,
+};
+
+const legendStyleTyped: CSSProperties = {
+  ...styles.legend,
+};
+
 // States for the form inputs
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -39,11 +53,11 @@ const Register = () => {
 
   return (
     <div style={styles.form}>
-      <div style={{ ...styles.card, marginTop: "5rem" }}>
+      <div style={cardStyleTyped}>
         <h1 style={styles.heading}>Register</h1>
         <form onSubmit={handleSubmit}>
           {error && <p style={styles.error}>{error}</p>}
-          <fieldset style={styles.fieldset}>
+          <fieldset style={fieldsetStyleTyped}>
             <legend style={styles.legend}>Create Account</legend>
 
             <label style={styles.label}>

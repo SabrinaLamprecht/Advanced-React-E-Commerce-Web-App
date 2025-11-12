@@ -81,6 +81,22 @@ const ShoppingCart: React.FC = () => {
   );
 };
 
+// Typed style objects
+const cartItemContainerStyle: React.CSSProperties = {
+  ...cardStyle,
+  display: "flex",
+  flexDirection: "column",
+  flexGrow: 1,
+};
+
+const imgContainerStyle: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "200px",
+  width: "100%",
+};
+
 // Cart item component with flexbox fixes
 const CartItem: React.FC<{ item: any; dispatch: any }> = ({
   item,
@@ -97,25 +113,10 @@ const CartItem: React.FC<{ item: any; dispatch: any }> = ({
   return (
     <Col xs={12} md={6} lg={4} className="d-flex align-items-stretch">
       <div className="d-flex flex-column w-100" style={{ minHeight: "100%" }}>
-        <div
-          style={{
-            ...cardStyle,
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-          }}
-        >
+        <div style={cartItemContainerStyle}>
           <h5 className="text-center">{item.title}</h5>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "200px",
-              width: "100%",
-            }}
-          >
+          <div style={imgContainerStyle}>
             <img
               src={imgSrc}
               alt={item.title}
