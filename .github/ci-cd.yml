@@ -19,7 +19,7 @@ on:
 # is defined and it specifies the environment where the job will run.
 # In this case, it uses the latest version of Ubuntu
 jobs:
-  build:
+  build: # Continuous Integration
     runs-on: ubuntu-latest
 
     # The steps section defines the sequence of actions that will be executed within the test job

@@ -21,7 +21,7 @@ const productReducer = (
       return { ...state, selectedCategory: action.payload };
     // Catch any unsupported actions to avoid silent errors
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      throw new Error(`Unhandled action`);
   }
 };
 
@@ -39,10 +39,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   // useReducer initializes state and gives a dispatch function to trigger updates
-  const [state, dispatch] = useReducer(
-    productReducer as React.Reducer<ProductState, ProductAction>,
-    initialProductState
-  );
+  const [state, dispatch] = useReducer(productReducer, initialProductState);
 
   // Pass the state and dispatch function down via context
   return (
