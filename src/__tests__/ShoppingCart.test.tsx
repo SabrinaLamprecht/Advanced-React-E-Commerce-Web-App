@@ -50,7 +50,6 @@ describe("ShoppingCart Integration Test", () => {
           title: "Test Product",
           price: 19.99,
           image: "https://example.com/img.jpg",
-          count: 1,
         })
       );
     });
