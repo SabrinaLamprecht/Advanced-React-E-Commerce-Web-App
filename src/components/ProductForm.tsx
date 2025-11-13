@@ -51,8 +51,9 @@ const ProductForm: React.FC<Props> = ({ initial, onSave, onClose }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
-        <Form.Label>Title</Form.Label>
+        <Form.Label htmlFor="title">Title</Form.Label>
         <Form.Control
+          id="title"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -61,8 +62,9 @@ const ProductForm: React.FC<Props> = ({ initial, onSave, onClose }) => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Description</Form.Label>
+        <Form.Label htmlFor="description">Description</Form.Label>
         <Form.Control
+          id="description"
           as="textarea"
           rows={3}
           value={description}
@@ -71,8 +73,9 @@ const ProductForm: React.FC<Props> = ({ initial, onSave, onClose }) => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Price</Form.Label>
+        <Form.Label htmlFor="price">Price</Form.Label>
         <Form.Control
+          id="price"
           type="number"
           step="0.01"
           value={isNaN(price) ? "" : price}
@@ -82,8 +85,9 @@ const ProductForm: React.FC<Props> = ({ initial, onSave, onClose }) => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Category</Form.Label>
+        <Form.Label htmlFor="category">Category</Form.Label>
         <Form.Control
+          id="category"
           type="text"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -91,7 +95,7 @@ const ProductForm: React.FC<Props> = ({ initial, onSave, onClose }) => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Image Upload or URL</Form.Label>
+        <Form.Label htmlFor="imageInput">Image Upload or URL</Form.Label>
 
         <div
           onDrop={handleDrop}
@@ -115,6 +119,7 @@ const ProductForm: React.FC<Props> = ({ initial, onSave, onClose }) => {
         />
 
         <Form.Control
+          id="imageInput"
           type="text"
           className="mt-2"
           value={image}

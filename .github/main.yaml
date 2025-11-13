@@ -1,25 +1,32 @@
-name: React CI
+name: Ecommerce App CI/CD
 
+# Trigger the workflow automatically on pushes to main branch
 on:
   push:
-    branches: [main, master]      
+    branches: [main]
 
+  # Continuous Integration (CI)
 jobs:
   build:
+    # Use latest Ubuntu for CI environment
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Check out repository code
       - name: Check out code
         uses: actions/checkout@v2
 
+      # Step 2: Set up Node.js
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: "20"
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm ci
 
+      # Step 4: Print debugging info
       - name: Print debugging information
         run: |
           echo "Node Version: $(node --version)"
@@ -27,40 +34,63 @@ jobs:
           echo "Working Directory: $(pwd)"
           echo "Contents of Working Directory: $(ls -l)"
           echo "Contents of node_modules: $(ls -l node_modules)"
+
+  # Run tests
   test:
+    # Ensure this runs only after the build job succeeds
     needs: build
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Check out repoository code
       - name: Check out code
         uses: actions/checkout@v2
 
+      # Step 2: Set up Node.js
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: "20"
 
+      # Step 3: Install dependencies (required for Jest)
       - name: Install dependencies
         run: npm install
 
+      # Step 4: Run unit tests using Jest
       - name: Run tests
         run: npm test
+
+  # Continuous Deployment (CD)
   deploy:
+    # Ensure deployment only occurs after the CI tests have passed successfully
     needs: test
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Check out repository code
       - name: Checkout code
         uses: actions/checkout@v2
+      # Step 2: Set up Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: "20"
+
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
-      - name: Install Vercel CLI        
+
+      # Step 4: Install Vercel CLI to deploy the application to Vercel
+      - name: Install Vercel CLI
         run: npm install --global vercel@latest
-      - name: Pull Vercel Environment Information        
+
+      # Step 5: Pull Vercel environment variables for the preview environment
+      - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Build Project Artifacts        
+
+      # Step 6: Build project artifacts locally
+      - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy Project Artifacts to Vercel        
+
+      # Step 7: Deploy project artifacts to Vercel
+      - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
