@@ -18,6 +18,9 @@ This project features:
 - Backend: Firebase Authentication, Firestore
 - Styling: CSS Modules, Custom Style Objects
 - Build Tool: Vite
+- Jest & React Testing Library (unit and integration tests)
+- GitHub Actions (CI/CD automation)
+- Vercel (autmomated deployment)
 
 ----- Installation Steps -----
 
@@ -28,6 +31,10 @@ This project features:
    npm install
 3. Run the application: npm run dev
    Open http://localhost:5173 in your browser
+
+   Alternatively...
+
+4. Navigate to the link provided: https://advanced-react-e-commerce-web-k58i32hf1.vercel.app/
 
 ----- Usage -----
 
@@ -75,6 +82,10 @@ This project features:
 ----- Folder Structure -----
 
 src/
+├── **tests**/
+│ └── LogOut.test.jsx.ts
+│ └── ProductForm.test.jsx
+│ └── ShoppingCart.test.jsx
 ├── api/
 │ └── api.ts
 ├── components/

@@ -54,7 +54,7 @@ describe("ShoppingCart Integration Test", () => {
       );
     });
 
-    // Ensure UI reflects updated cart - Confirms the UI updated in response to the Reduc state change
+    // Ensure UI reflects updated cart - Confirms the UI updated in response to the Redux state change
     // Integration between state managment and component rendering
     expect(await screen.findByText(/Test Product/i)).toBeInTheDocument();
 
